@@ -6,6 +6,12 @@
         <JavaScript>
             var Observable = require('FuseJS/Observable')
             var myVariable = Observable("some value");
+            var lowercase = myVariable.map(function(x) {
+                return x.toLowerCase();
+            });
+            var isRahu = myVariable.map(function(x) {
+                return "Rahu" == x;
+            });
 
             function button_clicked() {
                 myVariable.value = "some other value"
@@ -13,12 +19,17 @@
             }
             module.exports = {
                 myVariable:myVariable,
-                button_clicked: button_clicked
+                button_clicked: button_clicked,
+                lowercase:lowercase,
+                isRahu:isRahu
             };
         </JavaScript>
 
         <StackPanel>
-            <Text Value = "{myVariable}" Margin ="30" />
+            <TextInput Value ="{myVariable}" />
+            <Text Value = "{isRahu}" Margin ="0" />
+            <Text Value = "{lowercase}" Margin ="0" />
+
             <Button Text ="MyButton"  Clicked="{button_clicked}" Height="30" Alignment="Bottom"/>
         </StackPanel>
     </DockPanel>
