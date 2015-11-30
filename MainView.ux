@@ -1,6 +1,25 @@
 <App Theme="NativeWithFallback" Background="#eeeeeeff">
      <DockPanel>
         <StatusBarBackground Dock="Top" />
-        <Button Text ="MyButton" />
+        
+        
+        <JavaScript>
+            var Observable = require('FuseJS/Observable')
+            var myVariable = Observable("some value");
+
+            function button_clicked() {
+                myVariable.value = "some other value"
+                debug_log(myVariable);
+            }
+            module.exports = {
+                myVariable:myVariable,
+                button_clicked: button_clicked
+            };
+        </JavaScript>
+
+        <StackPanel>
+            <Text Value = "{myVariable}" Margin ="30" />
+            <Button Text ="MyButton"  Clicked="{button_clicked}" Height="30" Alignment="Bottom"/>
+        </StackPanel>
     </DockPanel>
 </App>
